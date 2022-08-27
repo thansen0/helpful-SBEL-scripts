@@ -54,7 +54,7 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
     # create a file for each topic being written
     control_input_file = open(os.path.join(output_path, "control_vehicle_input.csv"), "w", newline='')
     control_vehicle_inputs_csv = csv.writer(control_input_file)
-    control_vehicle_inputs_csv.writerow(["steering", "throttle", "braking"])
+    control_vehicle_inputs_csv.writerow(["second", "nanosecond", "steering", "throttle", "braking"])
 
     # print("\nros2_messages:")
     # print(ros2_messages)
@@ -67,14 +67,14 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
             # Early versions didn't have a header, more recent ones do. Be sure to check 
             # Whether you need the header or not
 
-            # tsecond = data.header.stamp.sec
-            # tnanosecond = data.header.stamp.nanosec
+            tsecond = data.header.stamp.sec
+            tnanosecond = data.header.stamp.nanosec
 
             steering = data.steering
             throttle = data.throttle
             braking = data.braking
 
-            control_vehicle_inputs_csv.writerow([steering, throttle, braking])
+            control_vehicle_inputs_csv.writerow([tsecond, tnanosecond, steering, throttle, braking])
 
 
     control_input_file.close()
