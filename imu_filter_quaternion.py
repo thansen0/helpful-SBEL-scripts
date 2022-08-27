@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 rosbag_dir = args.input
 
-topic = "/filter/velocity"
+topic = "/filter/quaternion"
 frame_counter = 0
 output_path = args.output
 
@@ -36,9 +36,9 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
     ros2_messages = ros2_reader.messages(connections=ros2_conns)
 
     # create a file for each topic being written
-    imu_data_file = open(os.path.join(output_path, "imu_filter_velocity.csv"), "w", newline='')
+    imu_data_file = open(os.path.join(output_path, "imu_filter_quaternion.csv"), "w", newline='')
     imu_data_csv = csv.writer(imu_data_file)
-    imu_data_csv.writerow(["seconds", "nanoseconds", "velocity_x", "velocity_y", "velocity_z"])
+    imu_data_csv.writerow(["seconds", "nanoseconds", "quaternion x", "quaternion y", "quaternion z", "quaternion w"])
 
     # print("\nros2_messages:")
     # print(ros2_messages)
@@ -52,18 +52,17 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
             type(connection.msgtype)
             data = deserialize_cdr(rawdata, connection.msgtype)
 
-            # print(data)
-            # print("\n")
+#            print(data)
+#            print("\n")
 
             tsecond = data.header.stamp.sec
             tnanosecond = data.header.stamp.nanosec
-            
-            vel_x = data.vector.x
-            vel_y = data.vector.y
-            vel_z = data.vector.z
 
+            x = data.quaternion.x
+            y = data.quaternion.y
+            z = data.quaternion.z
+            w = data.quaternion.w
 
-
-            imu_data_csv.writerow([tsecond, tnanosecond, vel_x, vel_y, vel_z])
+            imu_data_csv.writerow([tsecond, tnanosecond, x, y, z, w])
 
     imu_data_file.close()

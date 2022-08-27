@@ -36,9 +36,9 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
     ros2_messages = ros2_reader.messages(connections=ros2_conns)
 
     # create a file for each topic being written
-    imu_data_file = open(os.path.join(output_path, "imu_filter_velocity.csv"), "w", newline='')
+    imu_data_file = open(os.path.join(output_path, "imu_filter_twist.csv"), "w", newline='')
     imu_data_csv = csv.writer(imu_data_file)
-    imu_data_csv.writerow(["seconds", "nanoseconds", "velocity_x", "velocity_y", "velocity_z"])
+    imu_data_csv.writerow(["seconds", "nanoseconds", "twist_x", "twist_y", "twist_z"])
 
     # print("\nros2_messages:")
     # print(ros2_messages)
@@ -58,12 +58,10 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
             tsecond = data.header.stamp.sec
             tnanosecond = data.header.stamp.nanosec
             
-            vel_x = data.vector.x
-            vel_y = data.vector.y
-            vel_z = data.vector.z
+            x = data.vector.x
+            y = data.vector.y
+            z = data.vector.z
 
-
-
-            imu_data_csv.writerow([tsecond, tnanosecond, vel_x, vel_y, vel_z])
+            imu_data_csv.writerow([tsecond, tnanosecond, x, y, z])
 
     imu_data_file.close()
