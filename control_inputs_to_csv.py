@@ -26,7 +26,7 @@ rosbag_dir = args.input
 from rosbags.typesys import get_types_from_msg, register_types
 
 # path to message example, can copy into this directory
-VehicleInput_msg_path = Path('/home/thomas/Data/calibration/msgs/VehicleInput.msg')
+VehicleInput_msg_path = Path('./msgs/VehicleInput.msg')
 vh_def = VehicleInput_msg_path.read_text(encoding='utf-8')
 register_types(get_types_from_msg(
         vh_def, 'art_msgs/msg/VehicleInput2'))
