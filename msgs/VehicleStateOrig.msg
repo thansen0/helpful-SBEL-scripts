@@ -1,6 +1,3 @@
-ed for timestamps
-std_msgs/Header header
-
 # Instantaneous statte infromation of the ego vehicle
 
 # Position/orienation, velocity, and acceleration info

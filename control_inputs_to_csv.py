@@ -66,6 +66,7 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
             data = deserialize_cdr(rawdata, vh_msg_type)
             # Early versions didn't have a header, more recent ones do. Be sure to check 
             # Whether you need the header or not
+            # print(data)
 
             tsecond = data.header.stamp.sec
             tnanosecond = data.header.stamp.nanosec
