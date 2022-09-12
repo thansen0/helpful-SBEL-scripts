@@ -18,4 +18,7 @@ I tested these scripts in a virtual environment using `rosbags==0.9.12`, which y
 ```
 pip install rosbags
 ```
+## Bash scripts
+
+I also have an example bash script if you want to run a variety of scripts against one or more rosbags, although you'll likely have to edit the file to what you need.
 
