@@ -21,5 +21,5 @@ do
     python mocap_pose_to_csv.py -i $rb -o $rb
     python control_inputs_to_csv.py -i $rb -o $rb
     python gnss_to_csv.py -i $rb -o $rb
-    python mult_thread_camera_to_png.py -i $rb -o $rb
+    python camera_to_png_threadpool.py -i $rb -o $rb
 done
