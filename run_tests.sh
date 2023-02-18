@@ -1,6 +1,9 @@
 #!/bin/bash
 # To use this file you simply pass in the director(ies) where your data is 
 # stored, and it writes it back to those directories
+# 
+# Run with ./run_tests /path/to/rosbags2_* or use
+# find . -type d -name "rosbag2_*"
 
 if [ $# -le 0 ];
 then

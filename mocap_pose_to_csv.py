@@ -20,7 +20,6 @@ args = parser.parse_args()
 
 rosbag_dir = args.input
 
-topic = "/ART1/pose"
 frame_counter = 0
 output_path = args.output
 
@@ -48,7 +47,7 @@ with ROS2Reader(rosbag_dir) as ros2_reader:
         # print(connection.topic)
 
         # This will be position data
-        if (connection.topic == "/ART1/pose"):
+        if (connection.topic == "/ART1/pose" or connection.topic == "/ART2/pose"):
             data = deserialize_cdr(rawdata, connection.msgtype)
 
             # print(data)

@@ -18,7 +18,7 @@ def write_image(data, img_time, frame_counter):
     img = data.data.reshape(720, 1280, 3)
 
     pil_img = Image.fromarray(img)
-    pil_img.save(os.path.join(output_path, "camera/frame_{}.png".format(frame_counter)))
+    pil_img.save(os.path.join(output_path, "camera/frame_{:05d}.png".format(frame_counter)))
 
     #print("Img", frame_counter)
     return
